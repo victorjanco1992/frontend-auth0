@@ -1,0 +1,106 @@
+/* Estilos base generados por create-react-app */
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos integrados desde App.css */
+.home-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.home-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth-buttons {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.endpoint-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.response-box {
+  background-color: #f8f9fa;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 15px;
+  min-height: 50px;
+  white-space: pre-wrap;
+  margin-bottom: 40px;
+}
+
+.button {
+  padding: 10px 18px;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.primary {
+  background-color: #007bff;
+}
+
+.secondary {
+  background-color: #6c757d;
+}
+
+.success {
+  background-color: #28a745;
+}
+
+.info {
+  background-color: #17a2b8;
+}
+
+.warning {
+  background-color: #ffc107;
+  color: #000;
+}

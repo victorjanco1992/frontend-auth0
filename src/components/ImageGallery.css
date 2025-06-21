@@ -1,0 +1,66 @@
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.no-images {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-style: italic;
+  color: #555;
+}
+
+.card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card img {
+  max-width: 200px;
+  max-height: 150px;
+  object-fit: cover;
+  margin: auto;
+}
+
+.deleted-placeholder {
+  width: 200px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f0f0f0;
+  color: #888;
+  margin: auto;
+  font-style: italic;
+  border-radius: 4px;
+  user-select: none;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.btn {
+  padding: 6px 12px;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+  margin-right: 10px;
+}
+
+.btn-restore {
+  background-color: #27ae60;
+}
