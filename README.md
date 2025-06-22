@@ -1,70 +1,84 @@
-# Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Proyecto: 🖼️ Galería Segura - Frontend
 
-## Available Scripts
+Este proyecto es la interfaz de usuario de **Galería Segura**, una aplicación web que permite a usuarios autenticados visualizar imágenes y a administradores gestionar el contenido mediante permisos y roles definidos en Auth0.
 
-In the project directory, you can run:
+---
+Integrantes: Janco Victor, Castillo Albert
 
-### `npm start`
+## ✅ Requisitos previos
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Antes de ejecutar esta aplicación es necesario tener:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [Node.js](https://nodejs.org/) instalado (versión 16+ recomendada)
+- Una cuenta en [Auth0](https://auth0.com)
+- clonar repositorio backend (https://github.com/victorjanco1992/backend-auth0)
+- Backend corriendo en `http://localhost:8080`
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🔐 Configuración requerida en Auth0
 
-### `npm run build`
+1. **Crear una cuenta en Auth0** (gratuita).
+2. Crear una **Aplicación SPA**:
+   - Obtené el `Domain` y `Client ID`.
+3. Crear una **API** en Auth0:
+   - Usar un **audience** como: `https://example.yt/`
+   - Habilitar el flujo de acceso con tokens (JWT).
+4. Crear **roles**:
+   - `admin`
+   - `user`
+5. Asignar roles a usuarios desde el Dashboard de Auth0.
+6. Crear una **Action post-login** con este código:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+   ```js
+   exports.onExecutePostLogin = async (event, api) => {
+     const namespace = "https://galeria.example.com/";
+     const roles = event.authorization.roles || [];
+     api.accessToken.setCustomClaim(`${namespace}roles`, roles);
+   };
+   
+  ## ⚙️ Variables de entorno  .env
+  REACT_APP_AUTH0_DOMAIN=tu-dominio.auth0.com
+  REACT_APP_AUTH0_CLIENT_ID=tu-client-id
+  REACT_APP_AUTH0_AUDIENCE=tu-audience
+  REACT_APP_API_BASE_URL=http://localhost:8080/api
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ ## 🧪 Instrucciones de instalación y ejecución
+   
+1.Clonar el repositorio:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+git clone https://github.com/tu-usuario/galeria-segura-frontend.git
+cd galeria-segura-frontend
 
-### `npm run eject`
+2.Instalar dependencias:
+npm install
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+3.Crear el archivo .env como se indicó arriba.
+4.Iniciar la aplicacion
+npm start
+La app se ejecutará por defecto en http://localhost:3000.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+💻 Tecnologías utilizadas
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    React.js
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+    Auth0 React SDK (@auth0/auth0-react)
 
-## Learn More
+    Fetch API
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+    CSS personalizado
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+    JavaScript ES6+
+🚧 Funcionalidades
 
-### Code Splitting
+    ✅ Inicio y cierre de sesión con Auth0
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+    🔐 Visualización de imágenes autenticado
 
-### Analyzing the Bundle Size
+    🛡️ Gestión de imágenes para administradores (eliminar/restaurar)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+    🔍 Lógica de control basada en roles
 
-### Making a Progressive Web App
+    🧪 Prueba de endpoints públicos, protegidos y de administrador
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
