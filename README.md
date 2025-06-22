@@ -24,6 +24,17 @@ Antes de ejecutar esta aplicación es necesario tener:
 1. **Crear una cuenta en Auth0** (gratuita).
 2. Crear una **Aplicación SPA**:
    - Obtené el `Domain` y `Client ID`.
+   - Allowed Callback URLs:
+     	http://localhost:3000, http://localhost:3000/callback
+   - Allowed Logout URLs:
+     	http://localhost:3000
+     
+   - Allowed Web Origins:
+     	http://localhost:3000
+   - Allowed Origins (CORS):
+     	http://localhost:3000
+   - Otras configuraciones: ✅ Activar la opción "Allow Cross-Origin Authentication".
+
 3. Crear una **API** en Auth0:
    - Usar un **audience**  
    - Habilitar el flujo de acceso con tokens (JWT).
