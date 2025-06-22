@@ -6,13 +6,15 @@ Este proyecto es la interfaz de usuario de **Galería Segura**, una aplicación 
 ---
 Integrantes: Janco Victor, Castillo Albert
 
+---
+
 ## ✅ Requisitos previos
 
 Antes de ejecutar esta aplicación es necesario tener:
 
 - [Node.js](https://nodejs.org/) instalado (versión 16+ recomendada)
 - Una cuenta en [Auth0](https://auth0.com)
-- clonar repositorio backend (https://github.com/victorjanco1992/backend-auth0)
+- Clonar el backend (https://github.com/victorjanco1992/backend-auth0)
 - Backend corriendo en `http://localhost:8080`
 
 ---
@@ -23,7 +25,7 @@ Antes de ejecutar esta aplicación es necesario tener:
 2. Crear una **Aplicación SPA**:
    - Obtené el `Domain` y `Client ID`.
 3. Crear una **API** en Auth0:
-   - Usar un **audience** como: `https://example.yt/`
+   - Usar un **audience**  
    - Habilitar el flujo de acceso con tokens (JWT).
 4. Crear **roles**:
    - `admin`
@@ -37,27 +39,37 @@ Antes de ejecutar esta aplicación es necesario tener:
      const roles = event.authorization.roles || [];
      api.accessToken.setCustomClaim(`${namespace}roles`, roles);
    };
-   
-  ## ⚙️ Variables de entorno  .env
-  REACT_APP_AUTH0_DOMAIN=tu-dominio.auth0.com
-  REACT_APP_AUTH0_CLIENT_ID=tu-client-id
-  REACT_APP_AUTH0_AUDIENCE=tu-audience
-  REACT_APP_API_BASE_URL=http://localhost:8080/api
 
- ## 🧪 Instrucciones de instalación y ejecución
-   
-1.Clonar el repositorio:
+⚙️ Variables de entorno
 
-git clone https://github.com/tu-usuario/galeria-segura-frontend.git
-cd galeria-segura-frontend
+Creá un archivo .env en la raíz del proyecto frontend con el siguiente contenido:
 
-2.Instalar dependencias:
-npm install
+REACT_APP_AUTH0_DOMAIN=tu-dominio.auth0.com
 
-3.Crear el archivo .env como se indicó arriba.
-4.Iniciar la aplicacion
-npm start
-La app se ejecutará por defecto en http://localhost:3000.
+REACT_APP_AUTH0_CLIENT_ID=tu-client-id
+
+REACT_APP_AUTH0_AUDIENCE=tu-audience
+
+REACT_APP_API_BASE_URL=http://localhost:8080/api
+
+🧪 **Instrucciones de instalación y ejecución**
+
+1. Clonar el repositorio:
+
+	git clone https://github.com/tu-usuario/galeria-segura-frontend.git
+	cd galeria-segura-frontend
+
+2. Instalar dependencias:
+
+	npm install
+
+3. Crear el archivo .env como se indicó arriba.
+
+4. Iniciar la aplicación:
+
+    npm start
+
+    La app se ejecutará por defecto en http://localhost:3000.
 
 💻 Tecnologías utilizadas
 
@@ -70,6 +82,7 @@ La app se ejecutará por defecto en http://localhost:3000.
     CSS personalizado
 
     JavaScript ES6+
+
 🚧 Funcionalidades
 
     ✅ Inicio y cierre de sesión con Auth0
@@ -81,4 +94,3 @@ La app se ejecutará por defecto en http://localhost:3000.
     🔍 Lógica de control basada en roles
 
     🧪 Prueba de endpoints públicos, protegidos y de administrador
-
