@@ -44,28 +44,29 @@ Antes de ejecutar esta aplicación es necesario tener:
 
 Creá un archivo .env en la raíz del proyecto frontend con el siguiente contenido:
 
-REACT_APP_AUTH0_DOMAIN=tu-dominio.auth0.com
-
-REACT_APP_AUTH0_CLIENT_ID=tu-client-id
-
-REACT_APP_AUTH0_AUDIENCE=tu-audience
-
-REACT_APP_API_BASE_URL=http://localhost:8080/api
+	REACT_APP_AUTH0_DOMAIN=tu-dominio.auth0.com
+	
+	REACT_APP_AUTH0_CLIENT_ID=tu-client-id
+	
+	REACT_APP_AUTH0_AUDIENCE=tu-audience
+	
+	REACT_APP_API_BASE_URL=http://localhost:8080/api
 
 🧪 **Instrucciones de instalación y ejecución**
 
 1. Clonar el repositorio:
 
 	git clone https://github.com/tu-usuario/galeria-segura-frontend.git
+
 	cd galeria-segura-frontend
 
-2. Instalar dependencias:
+3. Instalar dependencias:
 
 	npm install
 
-3. Crear el archivo .env como se indicó arriba.
+4. Crear el archivo .env como se indicó arriba.
 
-4. Iniciar la aplicación:
+5. Iniciar la aplicación:
 
     npm start
 
