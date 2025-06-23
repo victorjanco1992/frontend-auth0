@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import Auth0ProviderWithConfig from './Auth0ProviderWithConfig';
+import Auth0ProviderWithConfig from './auth/Auth0ProviderWithConfig';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
