@@ -45,11 +45,16 @@ const ImageGallery = () => {
     fetchImages();
   }, [getAccessTokenSilently, isAuthenticated, API_BASE]);
 
+  /* funcion auxiliar para obtener el token*/ 
+    const obtenerToken = async () => {
+    return await getAccessTokenSilently({
+      audience: process.env.REACT_APP_AUTH0_AUDIENCE,
+    });
+  };
+  
   const eliminarImagen = async (id) => {
     try {
-      const token = await getAccessTokenSilently({
-        audience: process.env.REACT_APP_AUTH0_AUDIENCE,
-      });
+      const token = await obtenerToken();
       const res = await fetch(`${API_BASE}/images/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
@@ -69,9 +74,7 @@ const ImageGallery = () => {
 
   const restaurarImagen = async (id) => {
     try {
-      const token = await getAccessTokenSilently({
-        audience: process.env.REACT_APP_AUTH0_AUDIENCE,
-      });
+      const token = await obtenerToken();
       const res = await fetch(`${API_BASE}/images/${id}/restore`, {
         method: "PATCH",
         headers: {
@@ -111,7 +114,7 @@ const ImageGallery = () => {
             {!img.deleted ? (
               <img src={img.url} alt={`Imagen ${img.id}`} />
             ) : (
-              <div className="deleted-placeholder">Imagen no disponible</div>
+              <div className="deleted-placeholder">Imagen no disponible borrada por el admin</div>
             )}
 
             <div className="buttons">
