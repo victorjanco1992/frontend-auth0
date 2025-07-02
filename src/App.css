@@ -104,3 +104,14 @@
   background-color: #ffc107;
   color: #000;
 }
+
+.error-banner {
+  background-color: #ffe6e6;
+  color: #a10000;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  border: 1px solid #ffcccc;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}

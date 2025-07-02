@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "./ImageGallery.css";
 
-const ImageGallery = () => {
+const ImageGallery = ({ servidorActivo, setServidorActivo }) => {
   const { getAccessTokenSilently, user, isAuthenticated } = useAuth0();
   const [images, setImages] = useState([]);
 
@@ -10,7 +10,7 @@ const ImageGallery = () => {
     ? user["https://galeria.example.com/roles"]
     : [];
 
-  const API_BASE = process.env.REACT_APP_API_BASE_URL; // URL base backend
+  const API_BASE = process.env.REACT_APP_API_BASE_URL;
 
   useEffect(() => {
     if (!isAuthenticated) {
@@ -32,26 +32,28 @@ const ImageGallery = () => {
         if (res.ok) {
           const data = await res.json();
           setImages(data);
+          setServidorActivo(true);
         } else {
           console.error("Error al obtener imágenes");
+          setServidorActivo(true);
           setImages([]);
         }
       } catch (error) {
-        console.error("Error al obtener token o imágenes:", error);
+        console.error("Error de red:", error);
+        setServidorActivo(false); // ⚠️ backend no disponible
         setImages([]);
       }
     };
 
     fetchImages();
-  }, [getAccessTokenSilently, isAuthenticated, API_BASE]);
+  }, [getAccessTokenSilently, isAuthenticated, API_BASE, setServidorActivo]);
 
-  /* funcion auxiliar para obtener el token*/ 
-    const obtenerToken = async () => {
+  const obtenerToken = async () => {
     return await getAccessTokenSilently({
       audience: process.env.REACT_APP_AUTH0_AUDIENCE,
     });
   };
-  
+
   const eliminarImagen = async (id) => {
     try {
       const token = await obtenerToken();
@@ -69,6 +71,7 @@ const ImageGallery = () => {
       }
     } catch (error) {
       alert("Error al eliminar imagen");
+      setServidorActivo(false);
     }
   };
 
@@ -92,6 +95,7 @@ const ImageGallery = () => {
       }
     } catch (error) {
       alert("Error al restaurar imagen");
+      setServidorActivo(false);
     }
   };
 
@@ -103,7 +107,7 @@ const ImageGallery = () => {
 
   return (
     <div>
-      <h2 style={{ textAlign: "center", margin: "20px 0", fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif" }}>
+      <h2 style={{ textAlign: "center", margin: "20px 0" }}>
         {isAdmin ? "Panel de administración" : "Galería de imágenes"} - {user?.email}
       </h2>
 
@@ -114,25 +118,15 @@ const ImageGallery = () => {
             {!img.deleted ? (
               <img src={img.url} alt={`Imagen ${img.id}`} />
             ) : (
-              <div className="deleted-placeholder">Imagen no disponible borrada por el admin</div>
+              <div className="deleted-placeholder">Imagen no disponible (eliminada por el admin)</div>
             )}
 
             <div className="buttons">
               {!img.deleted && isAdmin && (
-                <button
-                  onClick={() => eliminarImagen(img.id)}
-                  className="btn btn-delete"
-                >
-                  Eliminar
-                </button>
+                <button onClick={() => eliminarImagen(img.id)} className="btn btn-delete">Eliminar</button>
               )}
               {img.deleted && isAdmin && (
-                <button
-                  onClick={() => restaurarImagen(img.id)}
-                  className="btn btn-restore"
-                >
-                  Restaurar
-                </button>
+                <button onClick={() => restaurarImagen(img.id)} className="btn btn-restore">Restaurar</button>
               )}
             </div>
           </div>
